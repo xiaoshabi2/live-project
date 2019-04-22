@@ -5,17 +5,21 @@ import com.gwd.dao.DrawLuckResultDao;
 import com.gwd.entity.*;
 import com.gwd.util.EmailUtil;
 import com.gwd.util.LcgRandom;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
+import static com.sun.tools.doclets.internal.toolkit.builders.AnnotationTypeBuilder.ROOT;
 
 
 @RequestMapping(value = "/drawluck")
@@ -47,8 +51,8 @@ public class LuckDrawController {
         ResponseData responseData = new ResponseData();
        LotteryDrawRule lotteryDrawRule=new LotteryDrawRule(LotteryDrawFilter.getFilterTypeString(filterType),keyWord,startTime,
                endTime,resultTime, winnerNum);
-        //LotteryDrawFilter lotteryDrawFilter=new LotteryDrawFilter(lotteryDrawRule,"/home/QQrecord-2022.txt");
-       LotteryDrawFilter lotteryDrawFilter=new LotteryDrawFilter(lotteryDrawRule,"G:\\MyJavaWeb\\Luckydraw\\src\\main\\resources\\QQrecord-2022.txt");
+       LotteryDrawFilter lotteryDrawFilter=new LotteryDrawFilter(lotteryDrawRule,"/home/QQrecord-2022.txt");
+        //LotteryDrawFilter lotteryDrawFilter=new LotteryDrawFilter(lotteryDrawRule,"G:\\MyJavaWeb\\Luckydraw\\src\\main\\resources\\QQrecord-2022.txt");
        Map<String, Integer> users = lotteryDrawFilter.doFilter();
        List<User> awardUsers = LcgRandom.getResult(users,winnerNum);
        String str[] = award.split("\\,");
@@ -128,4 +132,39 @@ public class LuckDrawController {
         return responseData;
     }
 
-}  
+    @RequestMapping("/create/image/{id}")
+    public ResponseData createId(@PathVariable Integer id) throws IOException, InterruptedException {
+        ResponseData responseData = new ResponseData();
+        DrawLuckResult dr = drawLuckResultDao.getById(id);
+        executeLinuxCmd(dr.getAwardResult());
+        return responseData;
+    }
+
+    public static void executeLinuxCmd(String argv) throws IOException, InterruptedException {
+        Process process = null;
+        String command1 = "python3 /root/getward/scholarship.py " + argv.replaceAll("\\r\\n","").replaceAll("\\n","");
+        process = Runtime.getRuntime().exec(command1);
+        process.waitFor();
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/image")
+    @ResponseBody
+    public void getImage( HttpServletRequest request, HttpServletResponse response) throws IOException {
+        File file = new File("/root/getward/img/scholarship.png");
+        FileInputStream inputStream = new FileInputStream(file);
+        int i = inputStream.available();
+        //byte数组用于存放图片字节数据
+        byte[] buff = new byte[i];
+        inputStream.read(buff);
+        //记得关闭输入流
+        inputStream.close();
+        //设置发送到客户端的响应内容类型
+        response.setContentType("image/png");
+        //response.setContentType("text/html; charset=utf-8");
+        OutputStream out = response.getOutputStream();
+        out.write(buff);
+        //关闭响应输出流
+        out.close();
+    }
+}
