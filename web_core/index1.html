@@ -78,7 +78,10 @@
                                         <label for="winnerNum" class="col-form-label">抽奖人数</label>
                                         <input type="text" class="form-control" id="winnerNum" placeholder="抽奖人数">
                                     </div>
-
+                                    <div class="form-group col-md-6">
+                                        <label for="email" class="col-form-label">发起者邮箱</label>
+                                        <input type="email" class="form-control" id="email" placeholder="发起者邮箱">
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="keyWord" class="col-form-label">抽奖关键词</label>
                                         <input type="text" class="form-control" id="keyWord" placeholder="抽奖关键词">
@@ -137,17 +140,18 @@
                 <!--</div>-->
             <div class="example col-md-10 ml-auto mr-auto">
                 <h3>中奖名单</h3>
-                <table class="table table-striped table-responsive "id="caxun">
+                <table class="table table-striped table-responsive ">
                     <thead>
                     <tr>
                         <th>抽奖ID</th>
-                        <th>中奖名单</th>
                         <th>中奖奖品</th>
                         <th>中奖时间</th>
-                        <th>备注</th>
+                        <th>中奖人数</th>
+                        <th>详情</th>
+                        <th>生成海报</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="caxun">
                     <tr>
                         <td>00122</td>
                         <td>
@@ -169,6 +173,7 @@
 
                     </tbody>
                 </table>
+
             </div>
         </div>
 
@@ -178,7 +183,7 @@
         <p class="text-muted text-center small p-0 mb-4">&copy; Copyright 2019 — 云打印</p>
         <div class="social d-table ml-auto mr-auto">
 
-            <a class="github mx-3 h4" href="#" target="_blank">
+            <a class="github mx-3 h4" href="https://github.com/xiaoshabi2/live-project" target="_blank">
                 <i class="fa fa-github"></i>
                 <span class="sr-only">View our GitHub Profile</span>
             </a>
@@ -190,8 +195,112 @@
 
         </div>
     </div>
+
+<!-- muban -->
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel1">🤔 抽奖详情</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="XQbrand">
+                <strong>抽奖ID：</strong>1<br/>
+                <strong>抽奖名称：</strong>啊啊啊a.<br/>
+                <strong>抽奖文案：</strong>呵呵.<br/>
+                <strong>抽奖关键词：</strong>我要换组.<br/>
+                <strong>开始时间：</strong>00.00.00.<br/>
+                <strong>结束时间：</strong>00.00.00.<br/>
+                <strong>发奖时间：</strong>00.00.00.<br/>
+                <strong>获奖人数：</strong>10<br/>
+                <strong>奖品：</strong>冲冲冲<br/>
+                <strong>过滤方式：</strong>不过滤<br/>
+                <strong>获奖名单：</strong>计4_黄志铭qq.com>:苹果X, Attens(2329677953):小米6, 计2-胡展瑞(876336903):小米6, 柯逍(83604395):华为平板, 计2＝黄正(2739294368):华为平板, 黄正(2739294368):华为平板, 浅风(1079543846):华为平板, 计2，黄正(2739294368):苹果平板, 计3黄靖茹@foxmail.com>:苹果平板, 计2-陈文垚(1079543846):null, <br/>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal" >确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">生成海报</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" >
+                <strong>海报已生成</strong>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-dismiss="modal"  >确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="laydate/laydate.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+    $.ajax({
+
+        url: "http://120.77.32.233/drawluck/drawluck/get/all",
+        type: "POST",
+        xhrFields: {
+            withCredentials: true
+        },
+        // headers:{
+        //     'Access-Control-Allow-Origin': '*'
+        // },
+        crossDomain: true,
+        dataType: 'json',
+
+        success: function (data) {
+
+        },
+        error: function (data) {
+
+        },
+        complete: function (data) {
+
+            var data1= $.parseJSON( data.responseText );
+
+
+            // alert(arr);
+            var div = document.getElementById("caxun");
+            while(div.hasChildNodes()) //当div下还存在子节点时 循环继续'XQ("+data1.data[i].id+","+data1.data[i].name+","+data1.data[i].document+","+data1.data[i].keyWord+","+data1.data[i].startTime+","+data1.data[i].endTime+","+data1.data[i].resultTime+","+data1.data[i].winnerNum+","+data1.data[i].award+","+data1.data[i].filterType+","+data1.data[i].awardResult+")
+            {
+                div.removeChild(div.firstChild);
+            }
+//onclick=\"XQ("+data1.data[i].id+",' "+data1.data[i].name+",' "+data1.data[i].documente+",' "+data1.data[i].keyWord+",' "+data1.data[i].startTime+",' "+data1.data[i].endTime+",' "+data1.data[i].resultTime+",' "+data1.data[i].winnerNum+",' "+data1.data[i].award+",' "+data1.data[i].filterType+",' "+data1.data[i].awardResult+" ')\"
+
+
+            for(i=0;i<data1.data.length;i++) {
+                //var temp=data1.data[i].startTime.replace(/\s/g,"");;
+                //alert(temp)
+                var text ="<tr>\n" +
+                    "                        <td>"+data1.data[i].id+"</td>\n" +
+                    "                        <td>\n"+data1.data[i].award+
+                    "                        </td>\n" +
+                    "                        <td>"+data1.data[i].resultTime+"</td>\n" +
+                    "                        <td>"+data1.data[i].winnerNum+"</td>\n" +
+                    "                        <td><button type='button' class='btn btn-info  btn-sm btn-squared'id='cx"+data1.data[i].id+"'  onclick=XQ("+i+") data-toggle='modal' data-target='#exampleModal1'>详情</button></td>\n" +
+                    "                        <td><button type='button' class='btn btn-success  btn-sm btn-squared'id='cx"+data1.data[i].id+"'  onclick=tp("+data1.data[i].id+") data-toggle='modal' data-target='#exampleModal2'>生成海报</button></td>\n" +
+                    "                    </tr>"
+                $('#caxun').append(text);
+            }
+            if(data1.code==200){
+                //alert("发布成功");
+            }
+            else {
+            }
+    }
+    });
     lay('#version').html('-v'+ laydate.v);
     //执行一个laydate实例
     laydate.render({
@@ -223,6 +332,7 @@
             crossDomain: true,
             dataType: 'json',
             data: {
+                'email':document.getElementById('email').value,
                 'name': document.getElementById('name').value,
                 'document': document.getElementById('document').value,
                 'keyWord': document.getElementById('keyWord').value,
@@ -244,33 +354,135 @@
 
             },
             complete: function (data) {
+        alert('发布成功');
+                $.ajax({
+
+                    url: "http://120.77.32.233/drawluck/drawluck/get/all",
+                    type: "POST",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    // headers:{
+                    //     'Access-Control-Allow-Origin': '*'
+                    // },
+                    crossDomain: true,
+                    dataType: 'json',
+
+                    success: function (data) {
+
+                    },
+                    error: function (data) {
+
+                    },
+                    complete: function (data) {
+
+                        var data1= $.parseJSON( data.responseText );
+
+
+                        // alert(arr);
+                        var div = document.getElementById("caxun");
+                        while(div.hasChildNodes()) //当div下还存在子节点时 循环继续'XQ("+data1.data[i].id+","+data1.data[i].name+","+data1.data[i].document+","+data1.data[i].keyWord+","+data1.data[i].startTime+","+data1.data[i].endTime+","+data1.data[i].resultTime+","+data1.data[i].winnerNum+","+data1.data[i].award+","+data1.data[i].filterType+","+data1.data[i].awardResult+")
+                        {
+                            div.removeChild(div.firstChild);
+                        }
+//onclick=\"XQ("+data1.data[i].id+",' "+data1.data[i].name+",' "+data1.data[i].documente+",' "+data1.data[i].keyWord+",' "+data1.data[i].startTime+",' "+data1.data[i].endTime+",' "+data1.data[i].resultTime+",' "+data1.data[i].winnerNum+",' "+data1.data[i].award+",' "+data1.data[i].filterType+",' "+data1.data[i].awardResult+" ')\"
+
+
+                        for(i=0;i<data1.data.length;i++) {
+                            //var temp=data1.data[i].startTime.replace(/\s/g,"");;
+                            //alert(temp)
+                            var text ="<tr>\n" +
+                                "                        <td>"+data1.data[i].id+"</td>\n" +
+                                "                        <td>\n"+data1.data[i].award+
+                                "                        </td>\n" +
+                                "                        <td>"+data1.data[i].resultTime+"</td>\n" +
+                                "                        <td>"+data1.data[i].winnerNum+"</td>\n" +
+                                "                        <td><button type='button' class='btn btn-info  btn-sm btn-squared'id='cx"+data1.data[i].id+"'  onclick=XQ("+i+") data-toggle='modal' data-target='#exampleModal1'>详情</button></td>\n" +
+                                "                        <td><button type='button' class='btn btn-success  btn-sm btn-squared'id='cx"+data1.data[i].id+"'  onclick=tp("+data1.data[i].id+") data-toggle='modal' data-target='#exampleModal2'>生成海报</button></td>\n" +
+                                "                    </tr>"
+                            $('#caxun').append(text);
+                        }
+                        if(data1.code==200){
+                            //alert("发布成功");
+                        }
+                        else {
+                        }
+                    }
+                });
+            }
+        });
+    }
+    function XQ(ix) {
+
+        $.ajax({
+
+            url: "http://120.77.32.233/drawluck/drawluck/get/all",
+            type: "POST",
+            xhrFields: {
+                withCredentials: true
+            },
+            // headers:{
+            //     'Access-Control-Allow-Origin': '*'
+            // },
+            crossDomain: true,
+            dataType: 'json',
+
+            success: function (data) {
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
 
                 var data1= $.parseJSON( data.responseText );
 
-            //alert(data1.data.awardResult);
-                // var data2='计1-胡绪佩(1730862635):苹果X,\r\n计2，黄正(2739294368):小米6,\r\n计6-蔡志斌(784374608):小米6,\r\n计3-张扬(1259125431):华为平板,\r\n计四-程晓宏(1063107260):华为平板,\r\n计1-佘岳昕(303241837):华为平板,\r\n计三-肖地秀(2639349703):华为平板,\r\n计1-胡青元ibelove@foxmail.com>:苹果平板,\r\n雨勤未晴丶(275922130):苹果平板,\r\nAttens(2329677953):null,\r\n'
-                arr=data1.data.awardResult.split(",\r\n");
-                // alert(arr);
-                var div = document.getElementById("caxun");
-                while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
-                {
-                    div.removeChild(div.firstChild);
+
+                for(i=0;i<data1.data.length;i++) {
+                    if (ix == i) {
+                        var text = "<strong>抽奖ID：</strong>" + data1.data[i].id + "<br/>\n" +
+                            "                <strong>抽奖名称：</strong>" + data1.data[i].name + "<br/>\n" +
+                            "                <strong>抽奖文案：</strong>" + data1.data[i].document + "<br/>\n" +
+                            "                <strong>抽奖关键词：</strong>" + data1.data[i].keyWord + "<br/>\n" +
+                            "                <strong>开始时间：</strong>" + data1.data[i].startTime + "<br/>\n" +
+                            "                <strong>结束时间：</strong>" + data1.data[i].endTime + "<br/>\n" +
+                            "                <strong>发奖时间：</strong>" + data1.data[i].resultTime + "<br/>\n" +
+                            "                <strong>获奖人数：</strong>" + data1.data[i].winnerNum + "<br/>\n" +
+                            "                <strong>奖品：</strong>" + data1.data[i].award + "<br/>\n" +
+                            "                <strong>过滤方式：</strong>" + data1.data[i].filterType + "<br/>\n" +
+                            "                <strong>获奖名单：</strong>" + data1.data[i].awardResult + "<br/>\n" +
+                            "       ";
+                        document.getElementById('XQbrand').innerHTML=text;
+                    }
                 }
 
+            }
+        });
 
-                for(i=0;i<arr.length;i++) {
-                    var text = "  <tr>\n" +
-                        "                            <td>" + arr[i] + "</td>\n" +
-                        "                        </tr>"
 
-                    $('#caxun').append(text);
-                }
-                if(data1.code==200){
-                    alert("发布成功");
-                }
-                else {
-                    alert("发布失败");
-                }
+    }
+    function tp(ix) {
+        $.ajax({
+
+            url: "http://120.77.32.233/drawluck/drawluck/create/image/"+ix ,
+            type: "POST",
+            xhrFields: {
+                withCredentials: true
+            },
+
+            crossDomain: true,
+            dataType: 'json',
+
+
+            success: function (data) {
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+                // open('http://120.77.32.233/drawluck/drawluck/image')
+                document.location = 'http://120.77.32.233/drawluck/drawluck/image'
             }
         });
     }
