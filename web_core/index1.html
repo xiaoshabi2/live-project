@@ -1,0 +1,287 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>三天之内抽了你</title>
+    <meta name="description" content="Elegant UI Toolkit for Professional Web Creatives Based on Bootstrap 4">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/shards.min.css">
+    <link rel="stylesheet" href="css/shards-demo.css?v=1.1.0">
+
+</head>
+
+<body>
+<div class="loader"><div class="page-loader"></div></div>
+
+<!-- Floating Shards -->
+<img src="images/demo/shard-1-5x-3.png" alt="Shard" class="shard">
+
+<!-- Welcome Section -->
+<div class="welcome d-flex justify-content-center flex-column">
+    <div class="inner-wrapper mt-auto mb-auto">
+        <h1 class="slide-in">在线抽奖</h1>
+        <p class="slide-in">zai line snap adanvatge</p>
+        <div class="action-links slide-in">
+          <a href="#" data-scroll-to="#modals" id="scroll-to-content" class="btn btn-primary btn-pill align-self-center mr-2"><i class="fa fa-angellist mr-1"></i> 8说了，开抽</a>
+          <!--<a href="#" data-scroll-to="#introduction" id="scroll-to-content" class="btn btn-outline-light btn-pill align-self-center">Learn More</a>-->
+        </div>
+    </div>
+    <div class="product-by">
+        <a href="#" target="_blank">
+            <p>power BY</p>
+            <p>云打印</p>
+        </a>
+    </div>
+</div>
+
+
+<div style="height: 600px"></div>
+        <!-- Modals -->
+        <div id="modals" class="container">
+            <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
+                <h3 class="mb-4">开始抽奖</h3>
+                <p>你可以从这里开始抽奖</p>
+            </div>
+
+            <div class="mb-5">
+                <!-- Trigger -->
+                <button type="button" class="btn btn-primary btn-pill btn-lg d-table ml-auto mr-auto" data-toggle="modal" data-target="#exampleModal">
+                    ✋ 抽!
+                </button>
+
+                <!-- Modal Body -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">🤔 抽奖设置</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                可以在这里设置抽奖规则<strong>若未设置则不能抽奖</strong>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="name" class="col-form-label">抽奖名称</label>
+                                        <input type="text" class="form-control" id="name" placeholder="抽奖名称">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="document" class="col-form-label">抽奖文案</label>
+                                        <input type="text" class="form-control" id="document" placeholder="抽奖文案">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="winnerNum" class="col-form-label">抽奖人数</label>
+                                        <input type="text" class="form-control" id="winnerNum" placeholder="抽奖人数">
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="keyWord" class="col-form-label">抽奖关键词</label>
+                                        <input type="text" class="form-control" id="keyWord" placeholder="抽奖关键词">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="startTime" class="col-form-label">开始抽奖时间</label>
+                                        <input type="text" class="form-control" id="startTime" placeholder="抽奖时间">
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="endTime" class="col-form-label">结束抽奖时间</label>
+                                        <input type="text" class="form-control" id="endTime" placeholder="抽奖时间">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="resultTime" class="col-form-label">抽奖公布时间</label>
+                                        <input type="text" class="form-control" id="resultTime" placeholder="抽奖时间">
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="award" class="col-form-label">奖品</label>
+                                        <input type="text" class="form-control" id="award" placeholder="奖品1">
+                                    </div>
+
+                                    <div class="col-md-6 pl-0 custom-dropdown-example">
+                                        <h6 class="text-muted mb-3">过滤方式</h6>
+                                        <fieldset>
+                                            <select class="custom-select w-100" required id="filterType">
+                                                <option value="1">不过滤</option>
+                                                <option value="2">普通过滤</option>
+                                                <option value="3">深度过滤</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-success" data-dismiss="modal" id="draw" onclick="draw()">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Typography -->
+        <div id="typography" class="container mb-5">
+            <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
+                <h3 class="mb-4">抽奖结果查询</h3>
+                <p>你可以在这里查询结果</p>
+            </div>
+            <!--<div class="row">-->
+                <!--<div class="form-group col-md-6">-->
+                    <!--<input type="text" class="form-control" id="id" placeholder="抽奖ID">-->
+                    <!--<button>查询</button>-->
+                <!--</div>-->
+            <div class="example col-md-10 ml-auto mr-auto">
+                <h3>中奖名单</h3>
+                <table class="table table-striped table-responsive "id="caxun">
+                    <thead>
+                    <tr>
+                        <th>抽奖ID</th>
+                        <th>中奖名单</th>
+                        <th>中奖奖品</th>
+                        <th>中奖时间</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>00122</td>
+                        <td>
+                           221600408_chj
+                        </td>
+                        <td>AJ12</td>
+                        <td>3.12</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>00011</td>
+                        <td>
+                            221600444_买买买
+                        </td>
+                        <td>DIOR</td>
+                        <td>3.15</td>
+                        <td></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+
+    <footer class="main-footer py-5">
+        <p class="text-muted text-center small p-0 mb-4">&copy; Copyright 2019 — 云打印</p>
+        <div class="social d-table ml-auto mr-auto">
+
+            <a class="github mx-3 h4" href="#" target="_blank">
+                <i class="fa fa-github"></i>
+                <span class="sr-only">View our GitHub Profile</span>
+            </a>
+        </div>
+    </footer>
+</div>
+
+<!-- JavaScript -->
+
+        </div>
+    </div>
+<script src="laydate/laydate.js"></script>
+<script>
+    lay('#version').html('-v'+ laydate.v);
+    //执行一个laydate实例
+    laydate.render({
+        elem: '#startTime'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#endTime'
+        ,type: 'datetime'
+    });
+    laydate.render({
+        elem: '#resultTime'
+        ,type: 'datetime'
+    });
+
+    function draw() {
+
+
+        $.ajax({
+
+            url: "http://120.77.32.233/drawluck/drawluck/draw",
+            type: "POST",
+            xhrFields: {
+                withCredentials: true
+            },
+            // headers:{
+            //     'Access-Control-Allow-Origin': '*'
+            // },
+            crossDomain: true,
+            dataType: 'json',
+            data: {
+                'name': document.getElementById('name').value,
+                'document': document.getElementById('document').value,
+                'keyWord': document.getElementById('keyWord').value,
+                // 'startTime': "2022-08-20 17:08:15",
+                // 'endTime': "2022-10-29 13:17:48",
+                // 'resultTime': "2022-08-29 13:17:48",
+                'startTime': document.getElementById('startTime').value,
+                'endTime': document.getElementById('endTime').value,
+                'resultTime': document.getElementById('resultTime').value,
+                'winnerNum': document.getElementById('winnerNum').value.toString(),
+                'award': document.getElementById('award').value,
+                'filterType': document.getElementById('filterType').value,
+
+            },
+            success: function (data) {
+
+            },
+            error: function (data) {
+
+            },
+            complete: function (data) {
+
+                var data1= $.parseJSON( data.responseText );
+
+            //alert(data1.data.awardResult);
+                // var data2='计1-胡绪佩(1730862635):苹果X,\r\n计2，黄正(2739294368):小米6,\r\n计6-蔡志斌(784374608):小米6,\r\n计3-张扬(1259125431):华为平板,\r\n计四-程晓宏(1063107260):华为平板,\r\n计1-佘岳昕(303241837):华为平板,\r\n计三-肖地秀(2639349703):华为平板,\r\n计1-胡青元ibelove@foxmail.com>:苹果平板,\r\n雨勤未晴丶(275922130):苹果平板,\r\nAttens(2329677953):null,\r\n'
+                arr=data1.data.awardResult.split(",\r\n");
+                // alert(arr);
+                var div = document.getElementById("caxun");
+                while(div.hasChildNodes()) //当div下还存在子节点时 循环继续
+                {
+                    div.removeChild(div.firstChild);
+                }
+
+
+                for(i=0;i<arr.length;i++) {
+                    var text = "  <tr>\n" +
+                        "                            <td>" + arr[i] + "</td>\n" +
+                        "                        </tr>"
+
+                    $('#caxun').append(text);
+                }
+                if(data1.code==200){
+                    alert("发布成功");
+                }
+                else {
+                    alert("发布失败");
+                }
+            }
+        });
+    }
+</script>
+<script src="js/buttons.js"></script>
+
+<script src="js/jquery-3.2.1.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+<script src="js/shards.min.js"></script>
+<script src="js/demo.min.js"></script>
+
+</body>
+</html>
