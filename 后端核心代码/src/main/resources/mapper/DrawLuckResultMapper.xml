@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gwd.dao.DrawLuckResultDao">
+
+    <resultMap type="DrawLuckResult" id="DrawLuckResult">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="document" column="document"/>
+        <result property="keyWord" column="key_word"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="resultTime" column="result_time"/>
+        <result property="winnerNum" column="winner_num"/>
+        <result property="award" column="award"/>
+        <result property="filterType" column="filter_type"/>
+        <result property="awardResult" column="award_result"/>
+    </resultMap>
+
+
+    <select id="getAll" resultMap="DrawLuckResult">
+        select * from draw_luck_result order by id desc
+    </select>
+    <select id="getById" resultMap="DrawLuckResult">
+        select * from draw_luck_result where  id = #{id}
+    </select>
+
+
+    <!--<select id="get" resultType="com.gwd.entity.User">-->
+        <!--select *from user where phone = #{phone} and password = #{password}-->
+    <!--</select>-->
+
+</mapper> 
